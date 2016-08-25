@@ -6,14 +6,14 @@ var template;
 
 $(document).on("ready", function() {
 
+initMap()
+
   $.ajax ({
     method: 'GET',
     url: weekly_quakes_endpoint,
     datatype: 'json',
     success: onSuccess,
-  })
-
-});
+  });
 
   function onSuccess(json) {
     //SUCCESS calls first earthquake
@@ -38,4 +38,14 @@ $(document).on("ready", function() {
 
     $("#quake_list").append(quakeHtml);
 
+
   };
+});
+
+function initMap() {
+  map = new google.maps.Map(document.getElementById('map'), {
+    center: {lat: 37.78, lng: -122.44},
+    zoom: 2, //originally 12 to zoom in on SF proper
+    mapTypeId: 'terrain',
+  });
+};
